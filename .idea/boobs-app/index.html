@@ -1,0 +1,53 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Generate Size-based String</title>
+</head>
+<body>
+  <h1>Gavin's Amazing Startup</h1>
+
+  <form id="sizeForm">
+    <label for="sizeInput">Enter a number:</label>
+    <input type="number" id="sizeInput" name="size" required>
+    <label for="optionA">
+      <input type="radio" id="optionA" name="option" value="a" checked> Boobies
+    </label>
+    <label for="optionB">
+      <input type="radio" id="optionB" name="option" value="b"> Wiener
+    </label>
+    <button type="submit">Generate</button>
+  </form>
+
+  <h3>Result:</h3>
+  <pre id="resultOutput"></pre>
+
+  <script>
+    document.getElementById('sizeForm').addEventListener('submit', async (e) => {
+      e.preventDefault();
+
+      const sizeInput = document.getElementById('sizeInput').value;
+      const option = document.querySelector('input[name="option"]:checked').value;
+
+      const response = await fetch('/generate', {
+        method: 'POST',
+        headers: {
+          'Content-Type': 'application/json'
+        },
+        body: JSON.stringify({ size: sizeInput, option: option })
+      });
+
+      const data = await response.json();
+      document.getElementById('resultOutput').innerHTML = data.result;
+    });
+  </script>
+  <footer>
+    <div style="border: 1px solid #000; padding: 10px; margin-top: 20px; text-align: center;">
+      <p>Your ad here! Contact us to place an amazing ad for your business.</p>
+      <a href="mailto:gasimmons@ucsd.edu">gasimmons@ucsd.edu</a>
+    </div>
+  </footer>
+</body>
+</html>
+
