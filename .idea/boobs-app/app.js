@@ -1,7 +1,6 @@
 const express = require('express');
 const path = require('path');
 const bodyParser = require('body-parser');
-
 const app = express();
 
 // Serve static files from the current directory or a "public" directory
@@ -19,7 +18,7 @@ app.post('/generate', (req, res) => {
   }
 
   if (option === 'a') {
-    const space = '&nbsp;'.repeat(parsedSize);
+    const space = ' '.repeat(parsedSize);
     const result = `(${space}.${space})(${space}.${space})`;
     res.json({ result });
   } else if (option === 'b') {
