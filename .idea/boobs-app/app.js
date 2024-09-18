@@ -22,11 +22,16 @@ app.post('/generate', (req, res) => {
     const result = `(${space}.${space})(${space}.${space})`;
     res.json({ result });
   } else if (option === 'b') {
-    const top = "()()\n";
-    const middle = " ||\n".repeat(parsedSize);
-    const bottom = " \\/\n";
-    const result = top + middle + bottom;
-    res.json({ result });
+    if (parsedSize === 69) {
+      res.sendFile('og_mud_bone.webp', { root: __dirname });
+    }
+    else {
+      const top = "()()\n";
+      const middle = " ||\n".repeat(parsedSize);
+      const bottom = " \\/\n";
+      const result = top + middle + bottom;
+      res.json({ result });
+    }
   } else {
     res.status(400).json({ error: 'Invalid option selected' });
   }
